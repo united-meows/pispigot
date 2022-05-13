@@ -1,0 +1,5 @@
+main: pisi.unitedmeows.pispigot.Pispigot
+name: Pispigot
+version: '0.0.1'
+description: RAW Event listener for spigot
+author: slowcheet4h & ghost2173
