@@ -1,13 +1,12 @@
 package pisi.unitedmeows.pispigot.event.impl.client;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketEvent;
 
 import pisi.unitedmeows.pispigot.event.PisiEvent;
+import pisi.unitedmeows.pispigot.util.Type;
 
+@Type(main = "play" , client = true , finalType = "steer_vehicle")
 public class C0CPacketInput extends PisiEvent {
-	public static final PacketType TYPE = PacketType.Play.Client.STEER_VEHICLE;
-
 	public C0CPacketInput(PacketEvent event) {
 		super(event);
 	}

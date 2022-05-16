@@ -2,12 +2,12 @@ package pisi.unitedmeows.pispigot.event.impl.client;
 
 import static pisi.unitedmeows.pispigot.event.impl.client.C03PacketPlayer.C03Type.*;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketEvent;
 
-public class C06PacketPlayerPosLook extends C03PacketPlayer {
-	public static final PacketType TYPE = PacketType.Play.Client.POSITION_LOOK;
+import pisi.unitedmeows.pispigot.util.Type;
 
+@Type(main = "play" , client = true , finalType = "position_look")
+public class C06PacketPlayerPosLook extends C03PacketPlayer {
 	public C06PacketPlayerPosLook(PacketEvent event) {
 		super(event);
 		yaw = packet().getFloat().read(0);

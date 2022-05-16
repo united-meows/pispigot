@@ -5,14 +5,14 @@ import java.util.List;
 import org.bukkit.craftbukkit.libs.jline.internal.Nullable;
 import org.bukkit.entity.Entity;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.EnumWrappers;
 
 import pisi.unitedmeows.pispigot.event.PisiEvent;
+import pisi.unitedmeows.pispigot.util.Type;
 
+@Type(main = "play" , client = true , finalType = "use_entity")
 public class C02PacketUseEntity extends PisiEvent {
-	public static final PacketType TYPE = PacketType.Play.Client.USE_ENTITY;
 	@Nullable
 	private Entity entity;
 	private EnumWrappers.EntityUseAction action;

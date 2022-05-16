@@ -1,12 +1,12 @@
 package pisi.unitedmeows.pispigot.event.impl.client;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketEvent;
 
 import pisi.unitedmeows.pispigot.event.PisiEvent;
+import pisi.unitedmeows.pispigot.util.Type;
 
+@Type(main = "login" , client = true , finalType = "start")
 public class C00PacketLoginStart extends PisiEvent {
-	public static final PacketType TYPE = PacketType.Login.Client.START;
 	private String IGN;
 
 	public C00PacketLoginStart(PacketEvent event) {

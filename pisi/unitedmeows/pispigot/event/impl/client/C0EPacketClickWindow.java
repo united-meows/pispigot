@@ -2,13 +2,13 @@ package pisi.unitedmeows.pispigot.event.impl.client;
 
 import org.bukkit.inventory.ItemStack;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketEvent;
 
-import pisi.unitedmeows.pispigot.event.PisiEvent;;
+import pisi.unitedmeows.pispigot.event.PisiEvent;
+import pisi.unitedmeows.pispigot.util.Type;;
 
+@Type(main = "play" , client = true , finalType = "window_click")
 public class C0EPacketClickWindow extends PisiEvent {
-	public static final PacketType TYPE = PacketType.Play.Client.WINDOW_CLICK;
 	private int windowID , slot , button;
 	private short actionNumber;
 	private ItemStack clickedItem;

@@ -2,13 +2,13 @@ package pisi.unitedmeows.pispigot.event.impl.client;
 
 import org.bukkit.inventory.ItemStack;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketEvent;
 
 import pisi.unitedmeows.pispigot.event.PisiEvent;
+import pisi.unitedmeows.pispigot.util.Type;
 
+@Type(main = "play" , client = true , finalType = "set_creative_slot")
 public class C10PacketCreativeInventoryAction extends PisiEvent {
-	public static final PacketType TYPE = PacketType.Play.Client.SET_CREATIVE_SLOT;
 	private int slotID;
 	private ItemStack stack;
 

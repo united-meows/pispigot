@@ -4,13 +4,13 @@ import static pisi.unitedmeows.pispigot.event.impl.client.C03PacketPlayer.C03Typ
 
 import org.bukkit.Location;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketEvent;
 
 import pisi.unitedmeows.pispigot.event.PisiEvent;
+import pisi.unitedmeows.pispigot.util.Type;
 
+@Type(main = "play" , client = true , finalType = "flying")
 public class C03PacketPlayer extends PisiEvent {
-	public static final PacketType TYPE = PacketType.Play.Client.FLYING;
 	protected boolean ground;
 	protected float yaw , pitch;
 	protected double posX , posY , posZ;

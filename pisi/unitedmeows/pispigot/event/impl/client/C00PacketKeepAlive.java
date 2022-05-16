@@ -1,12 +1,12 @@
 package pisi.unitedmeows.pispigot.event.impl.client;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketEvent;
 
 import pisi.unitedmeows.pispigot.event.PisiEvent;
+import pisi.unitedmeows.pispigot.util.Type;
 
+@Type(main = "play" , client = true , finalType = "keep_alive")
 public class C00PacketKeepAlive extends PisiEvent {
-	public static final PacketType TYPE = PacketType.Play.Client.KEEP_ALIVE;
 	private int key;
 
 	public C00PacketKeepAlive(PacketEvent event) {

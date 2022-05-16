@@ -1,12 +1,12 @@
 package pisi.unitedmeows.pispigot.event.impl.client;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketEvent;
 
 import pisi.unitedmeows.pispigot.event.PisiEvent;
+import pisi.unitedmeows.pispigot.util.Type;
 
+@Type(main = "play" , client = true , finalType = "chat")
 public class C01PacketChat extends PisiEvent {
-	public static final PacketType TYPE = PacketType.Play.Client.CHAT;
 	private String message;
 
 	public C01PacketChat(PacketEvent event) {

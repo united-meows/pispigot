@@ -2,6 +2,9 @@ package pisi.unitedmeows.pispigot.listener;
 
 import static com.comphenix.protocol.ProtocolLibrary.*;
 import static com.comphenix.protocol.events.ListenerPriority.*;
+import static java.lang.Class.*;
+import static java.lang.String.valueOf;
+import static java.util.Locale.*;
 import static pisi.unitedmeows.pispigot.Pispigot.*;
 
 import java.util.ArrayList;
@@ -14,8 +17,8 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketEvent;
 
-import pisi.unitedmeows.pispigot.Pispigot;
 import pisi.unitedmeows.pispigot.event.PisiEvent;
+import pisi.unitedmeows.pispigot.util.Type;
 
 /**
  * C00PacketServerQuery.java
@@ -67,7 +70,7 @@ public class PacketListener {
 		}
 	}
 
-	public static void startListening(boolean test) {
+	public static void startListening() {
 		try {
 			if (classes.isEmpty()) {
 				System.out.println("wow thank you reflections.");
@@ -75,14 +78,35 @@ public class PacketListener {
 			}
 			classes.forEach(class_ -> System.out.println(String.format("Loaded %s using reflection!", class_.getName())));
 			for (Class<?> clazz : classes) {
-				PacketType type = (PacketType) clazz.getDeclaredField("TYPE").get(clazz);
-				System.out.println(clazz.getName() + " registered as " + Arrays.toString(type.getClassNames()));
-				adapters.add(new PacketAdapter(self(), HIGHEST, type) {
+				Type type = clazz.getAnnotation(Type.class);
+				StringBuilder builder = new StringBuilder();
+				String main = type.main();
+				builder.append("com.comphenix.protocol.PacketType.");
+				builder.append(valueOf(main.charAt(0)).toUpperCase(ENGLISH) + main.substring(1).toLowerCase(ENGLISH) + ".");
+				builder.append(type.client() ? "Client" : "Server");
+				Class<?> baseClass = forName("com.comphenix.protocol.PacketType"); // com.comphenix.protocol.PacketType.Play.Client
+				Class foundClass = null;
+				for (Class<?> nested : baseClass.getClasses()) {
+					String canonicalName = nested.getCanonicalName();
+					System.out.println(canonicalName);
+					if (canonicalName.equals(builder.toString())) {
+						foundClass = nested;
+						break;
+					}
+				}
+				if (foundClass == null) {
+					System.out.println(builder.toString());
+					System.out.println("bruh moment");
+					break;
+				}
+				PacketType packetType = (PacketType) foundClass.getDeclaredField(type.finalType().toUpperCase(ENGLISH)).get(foundClass);
+				System.out.println(clazz.getName() + " registered as " + Arrays.toString(packetType.getClassNames()));
+				adapters.add(new PacketAdapter(self(), HIGHEST, packetType) {
 					@Override
 					public void onPacketReceiving(PacketEvent packetEvent) {
 						try {
 							PisiEvent pisiEvent = (PisiEvent) clazz.getDeclaredConstructor(packetEvent.getClass()).newInstance(packetEvent);
-							Pispigot.playerSystem(packetEvent.getPlayer()).fire(pisiEvent);
+							playerSystem(packetEvent.getPlayer()).fire(pisiEvent);
 							if (pisiEvent.isCanceled()) {
 								packetEvent.setCancelled(true);
 								pisiEvent.onCanceled();
@@ -106,7 +130,7 @@ public class PacketListener {
 		}
 	}
 
-	public static void stopListening(boolean test) {
+	public static void stopListening() {
 		adapters.forEach(getProtocolManager()::removePacketListener);
 	}
 }

@@ -1,12 +1,12 @@
 package pisi.unitedmeows.pispigot.event.impl.client;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketEvent;
 
 import pisi.unitedmeows.pispigot.event.PisiEvent;
+import pisi.unitedmeows.pispigot.util.Type;
 
+@Type(main = "play" , client = true , finalType = "close_window")
 public class C0DPacketCloseWindow extends PisiEvent {
-	public static final PacketType TYPE = PacketType.Play.Client.CLOSE_WINDOW;
 	private int windowID;
 
 	public C0DPacketCloseWindow(PacketEvent event) {

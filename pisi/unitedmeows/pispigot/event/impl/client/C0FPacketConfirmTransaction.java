@@ -1,12 +1,12 @@
 package pisi.unitedmeows.pispigot.event.impl.client;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketEvent;
 
 import pisi.unitedmeows.pispigot.event.PisiEvent;
+import pisi.unitedmeows.pispigot.util.Type;
 
+@Type(main = "play" , client = true , finalType = "transaction")
 public class C0FPacketConfirmTransaction extends PisiEvent {
-	public static final PacketType TYPE = PacketType.Play.Client.TRANSACTION;
 	private int windowId;
 	private short uid;
 	private boolean accepted;

@@ -1,12 +1,12 @@
 package pisi.unitedmeows.pispigot.event.impl.client;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketEvent;
 
 import pisi.unitedmeows.pispigot.event.PisiEvent;
+import pisi.unitedmeows.pispigot.util.Type;
 
+@Type(main = "play" , client = true , finalType = "enchant_item")
 public class C11PacketEnchantItem extends PisiEvent {
-	public static final PacketType TYPE = PacketType.Play.Client.ENCHANT_ITEM;
 	private int windowID;
 	private int button;
 

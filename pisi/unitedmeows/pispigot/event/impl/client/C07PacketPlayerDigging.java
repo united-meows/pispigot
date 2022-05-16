@@ -1,15 +1,15 @@
 package pisi.unitedmeows.pispigot.event.impl.client;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.BlockPosition;
 import com.comphenix.protocol.wrappers.EnumWrappers.Direction;
 import com.comphenix.protocol.wrappers.EnumWrappers.PlayerDigType;
 
 import pisi.unitedmeows.pispigot.event.PisiEvent;
+import pisi.unitedmeows.pispigot.util.Type;
 
+@Type(main = "play" , client = true , finalType = "block_dig")
 public class C07PacketPlayerDigging extends PisiEvent {
-	public static final PacketType TYPE = PacketType.Play.Client.BLOCK_DIG;
 	private BlockPosition position;
 	private Direction facing;
 	private PlayerDigType status;

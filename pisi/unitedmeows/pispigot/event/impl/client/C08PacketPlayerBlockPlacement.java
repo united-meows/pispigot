@@ -2,15 +2,14 @@ package pisi.unitedmeows.pispigot.event.impl.client;
 
 import org.bukkit.inventory.ItemStack;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.BlockPosition;
 
 import pisi.unitedmeows.pispigot.event.PisiEvent;
+import pisi.unitedmeows.pispigot.util.Type;
 
+@Type(main = "play" , client = true , finalType = "block_place")
 public class C08PacketPlayerBlockPlacement extends PisiEvent {
-	public static final PacketType TYPE = PacketType.Play.Client.BLOCK_PLACE;
-
 	public C08PacketPlayerBlockPlacement(PacketEvent event) {
 		super(event);
 	}

@@ -1,14 +1,14 @@
 package pisi.unitedmeows.pispigot.event.impl.client;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.BlockPosition;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 
 import pisi.unitedmeows.pispigot.event.PisiEvent;
+import pisi.unitedmeows.pispigot.util.Type;
 
+@Type(main = "play" , client = true , finalType = "update_sign")
 public class C12PacketUpdateSign extends PisiEvent {
-	public static final PacketType TYPE = PacketType.Play.Client.UPDATE_SIGN;
 	private BlockPosition pos;
 	private WrappedChatComponent[] lines;
 

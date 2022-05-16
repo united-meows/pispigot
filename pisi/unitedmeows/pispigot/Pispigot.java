@@ -26,13 +26,13 @@ public class Pispigot extends JavaPlugin implements Listener {
 		playerEventSystems = new HashMap<>();
 		serverEventSystem = new BasicEventSystem();
 		Bukkit.getServer().getPluginManager().registerEvents(this, this);
-		PacketListener.startListening(true);
+		PacketListener.startListening();
 	}
 
 	@Override
 	public void onDisable() {
 		playerEventSystems.clear();
-		PacketListener.stopListening(true);
+		PacketListener.stopListening();
 		super.onDisable();
 	}
 

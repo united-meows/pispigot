@@ -4,17 +4,17 @@ import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
-import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.EnumWrappers.PlayerAction;
 
 import pisi.unitedmeows.pispigot.event.PisiEvent;
+import pisi.unitedmeows.pispigot.util.Type;
 
 /**
  * auxData is Horse Jump Power
  */
+@Type(main = "play" , client = true , finalType = "entity_action")
 public class C0BPacketEntityAction extends PisiEvent {
-	public static final PacketType TYPE = PacketType.Play.Client.ENTITY_ACTION;
 	private int entityID , auxData;
 	private PlayerAction action;
 
