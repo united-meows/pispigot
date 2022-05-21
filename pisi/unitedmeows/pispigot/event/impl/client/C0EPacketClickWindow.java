@@ -12,7 +12,7 @@ public class C0EPacketClickWindow extends PisiEvent {
 	private int windowID , slot , button;
 	private short actionNumber;
 	private ItemStack clickedItem;
-	private InventoryClickType clickType;
+	private int clickType;
 
 	public C0EPacketClickWindow(PacketEvent event) {
 		super(event);
@@ -21,7 +21,7 @@ public class C0EPacketClickWindow extends PisiEvent {
 		this.button = packet().getIntegers().read(2);
 		this.actionNumber = packet().getShorts().read(0);
 		this.clickedItem = packet().getItemModifier().read(0);
-		this.clickType = packet().getEnumModifier(InventoryClickType.class, 5).read(0);
+		this.clickType = packet().getIntegers().read(3);
 	}
 
 	public C0EPacketClickWindow windowID(int id) {
@@ -54,9 +54,9 @@ public class C0EPacketClickWindow extends PisiEvent {
 		return this;
 	}
 
-	public C0EPacketClickWindow clickType(InventoryClickType write) {
-		packet().getEnumModifier(InventoryClickType.class, 5).write(0, write);
-		this.clickType = write;
+	public C0EPacketClickWindow clickType(int type) {
+		packet().getIntegers().write(3, type);
+		this.clickType = type;
 		return this;
 	}
 
@@ -72,25 +72,15 @@ public class C0EPacketClickWindow extends PisiEvent {
 		return button;
 	}
 
+	public int clickType() {
+		return clickType;
+	}
+
 	public short actionNumber() {
 		return actionNumber;
 	}
 
 	public ItemStack clickedItem() {
 		return clickedItem;
-	}
-
-	public InventoryClickType clickType() {
-		return clickType;
-	}
-
-	public enum InventoryClickType {
-		PICKUP,
-		QUICK_MOVE,
-		SWAP,
-		CLONE,
-		THROW,
-		QUICK_CRAFT,
-		PICKUP_ALL;
 	}
 }

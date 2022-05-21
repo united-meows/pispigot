@@ -120,7 +120,6 @@ public class PacketListener {
 						catch (Exception e) {
 							e.printStackTrace();
 						}
-						super.onPacketReceiving(packetEvent);
 					}
 				});
 			}
