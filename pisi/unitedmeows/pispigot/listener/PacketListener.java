@@ -84,19 +84,20 @@ public class PacketListener {
 				builder.append("com.comphenix.protocol.PacketType.");
 				builder.append(valueOf(main.charAt(0)).toUpperCase(ENGLISH) + main.substring(1).toLowerCase(ENGLISH) + ".");
 				builder.append(type.client() ? "Client" : "Server");
-				Class<?> baseClass = forName("com.comphenix.protocol.PacketType"); // com.comphenix.protocol.PacketType.Play.Client
+				Class<?> baseClass = forName("com.comphenix.protocol.PacketType");
 				Class foundClass = null;
 				for (Class<?> nested : baseClass.getClasses()) {
-					String canonicalName = nested.getCanonicalName();
-					System.out.println(canonicalName);
-					if (canonicalName.equals(builder.toString())) {
-						foundClass = nested;
-						break;
+					for (Class<?> superNested : nested.getClasses()) {
+						String canonicalName = superNested.getCanonicalName();
+						if (canonicalName.equals(builder.toString())) {
+							foundClass = superNested;
+							break;
+						}
 					}
 				}
 				if (foundClass == null) {
-					System.out.println(builder.toString());
-					System.out.println("bruh moment");
+					System.out.println("-------------------------------");
+					System.out.println(builder.toString() + " is null.");
 					break;
 				}
 				PacketType packetType = (PacketType) foundClass.getDeclaredField(type.finalType().toUpperCase(ENGLISH)).get(foundClass);
