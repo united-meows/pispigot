@@ -8,7 +8,6 @@ import static java.util.Locale.*;
 import static pisi.unitedmeows.pispigot.Pispigot.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.reflections.Reflections;
@@ -101,14 +100,16 @@ public class PacketListener {
 					break;
 				}
 				PacketType packetType = (PacketType) foundClass.getDeclaredField(type.finalType().toUpperCase(ENGLISH)).get(foundClass);
-				System.out.println(clazz.getName() + " registered as " + Arrays.toString(packetType.getClassNames()));
+				StringBuilder mfw = new StringBuilder();
+				packetType.getClassNames().forEach(str -> mfw.append(str + " , "));
+				System.out.println(clazz.getName() + " registered as " + mfw.toString());
 				adapters.add(new PacketAdapter(self(), HIGHEST, packetType) {
 					@Override
 					public void onPacketReceiving(PacketEvent packetEvent) {
 						try {
 							PisiEvent pisiEvent = (PisiEvent) clazz.getDeclaredConstructor(packetEvent.getClass()).newInstance(packetEvent);
 							playerSystem(packetEvent.getPlayer()).fire(pisiEvent);
-							if (pisiEvent.isCanceled()) {
+							if (pisiEvent.cancel()) {
 								packetEvent.setCancelled(true);
 								pisiEvent.onCanceled();
 								return;

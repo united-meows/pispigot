@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import pisi.unitedmeows.eventapi.system.BasicEventSystem;
+import pisi.unitedmeows.eventapi.system.impl.BasicEventSystem;
 import pisi.unitedmeows.pispigot.listener.PSTestListener;
 import pisi.unitedmeows.pispigot.listener.PacketListener;
 

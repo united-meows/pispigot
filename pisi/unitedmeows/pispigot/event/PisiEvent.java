@@ -39,6 +39,6 @@ public class PisiEvent extends Event {
 	}
 
 	public boolean isCancelledSomeHow() {
-		return isSilentCanceled() || isCanceled();
+		return isSilentCanceled() || cancel();
 	}
 }
